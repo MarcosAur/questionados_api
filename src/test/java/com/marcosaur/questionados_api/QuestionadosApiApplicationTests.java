@@ -1,0 +1,13 @@
+package com.marcosaur.questionados_api;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class QuestionadosApiApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

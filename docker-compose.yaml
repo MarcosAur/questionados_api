@@ -1,0 +1,23 @@
+version: "3.7"
+volumes:
+  dbdata:
+services:
+  db:
+    image: mysql:8.3.0
+    container_name: questionados_api-db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: questionados_db
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_USER: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+    networks:
+      - questionados_api
+networks:
+  questionados_api:
+    driver: bridge
