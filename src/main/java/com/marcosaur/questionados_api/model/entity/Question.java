@@ -22,6 +22,9 @@ public class Question implements Serializable{
     @Column()
     private String description;
 
+    @OneToMany(mappedBy = "question")
+    private List<Reply> replies;
+
 
     public Question(){}
 
