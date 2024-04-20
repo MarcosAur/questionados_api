@@ -1,4 +1,4 @@
-package com.marcosaur.questionados_api.model.dto;
+package com.marcosaur.questionados_api.model.dto.question;
 
 public class UpdateQuestionDto {
 

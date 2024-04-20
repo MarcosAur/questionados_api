@@ -1,8 +1,8 @@
 package com.marcosaur.questionados_api.services;
 
 import com.marcosaur.questionados_api.model.dao.QuestionDao;
-import com.marcosaur.questionados_api.model.dto.QuestionDto;
-import com.marcosaur.questionados_api.model.dto.UpdateQuestionDto;
+import com.marcosaur.questionados_api.model.dto.question.IndexAndStoreQuestionDto;
+import com.marcosaur.questionados_api.model.dto.question.UpdateQuestionDto;
 import com.marcosaur.questionados_api.model.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,31 +20,31 @@ public class QuestionService {
         return questionDao.findAll();
     }
 
-    public QuestionDto findById(String id){
+    public IndexAndStoreQuestionDto findById(String id){
         Optional<Question> question = questionDao.findById(Long.parseLong(id));
 
         if (question.isPresent()) {
 
-            return new QuestionDto(question.get());
+            return new IndexAndStoreQuestionDto(question.get());
         }
 
         return null;
     }
 
 
-    public QuestionDto save(QuestionDto questionDto){
+    public IndexAndStoreQuestionDto save(IndexAndStoreQuestionDto questionDto){
         Question question = new Question(questionDto.getName(), questionDto.getDescription());
         Question savedQuestion = questionDao.save(question);
 
-        return new QuestionDto(savedQuestion);
+        return new IndexAndStoreQuestionDto(savedQuestion);
     }
 
-    public QuestionDto update(UpdateQuestionDto questionDto){
-        QuestionDto updatedQuestion;
+    public IndexAndStoreQuestionDto update(UpdateQuestionDto questionDto){
+        IndexAndStoreQuestionDto updatedQuestion;
 
         if(questionDao.findById(questionDto.getId()).isPresent()){
             Question questionToUpdate = new Question(questionDto.getName(), questionDto.getDescription(), questionDto.getId());
-            updatedQuestion = new QuestionDto(questionDao.saveAndFlush(questionToUpdate));
+            updatedQuestion = new IndexAndStoreQuestionDto(questionDao.saveAndFlush(questionToUpdate));
         } else {
             updatedQuestion = null;
         }

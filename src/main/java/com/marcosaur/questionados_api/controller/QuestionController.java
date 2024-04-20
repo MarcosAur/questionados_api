@@ -1,7 +1,7 @@
 package com.marcosaur.questionados_api.controller;
 
-import com.marcosaur.questionados_api.model.dto.QuestionDto;
-import com.marcosaur.questionados_api.model.dto.UpdateQuestionDto;
+import com.marcosaur.questionados_api.model.dto.question.IndexAndStoreQuestionDto;
+import com.marcosaur.questionados_api.model.dto.question.UpdateQuestionDto;
 import com.marcosaur.questionados_api.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +17,15 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping(value="/find-all")
-    public ResponseEntity<List<QuestionDto>> findAll(){
-        List<QuestionDto> questions = questionService.findAll().stream().map(QuestionDto::new).toList();
+    public ResponseEntity<List<IndexAndStoreQuestionDto>> findAll(){
+        List<IndexAndStoreQuestionDto> questions = questionService.findAll().stream().map(IndexAndStoreQuestionDto::new).toList();
 
         return ResponseEntity.ok().body(questions);
     }
 
     @GetMapping(value="/find-by-id/")
-    public ResponseEntity<QuestionDto> findById(@RequestParam String id){
-        QuestionDto question = questionService.findById(id);
+    public ResponseEntity<IndexAndStoreQuestionDto> findById(@RequestParam String id){
+        IndexAndStoreQuestionDto question = questionService.findById(id);
         if(question != null){
             return ResponseEntity.ok().body(question);
         }
@@ -33,14 +33,14 @@ public class QuestionController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<QuestionDto> save(@RequestBody QuestionDto question){
-        QuestionDto savedQuestion = questionService.save(question);
+    public ResponseEntity<IndexAndStoreQuestionDto> save(@RequestBody IndexAndStoreQuestionDto question){
+        IndexAndStoreQuestionDto savedQuestion = questionService.save(question);
         return ResponseEntity.ok().body(savedQuestion);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<QuestionDto>  update(@RequestBody UpdateQuestionDto question){
-        QuestionDto updatedQuestion = questionService.update(question);
+    public ResponseEntity<IndexAndStoreQuestionDto>  update(@RequestBody UpdateQuestionDto question){
+        IndexAndStoreQuestionDto updatedQuestion = questionService.update(question);
 
         if(updatedQuestion == null){
             return ResponseEntity.badRequest().body(updatedQuestion);

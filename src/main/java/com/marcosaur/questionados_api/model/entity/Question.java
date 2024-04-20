@@ -1,12 +1,15 @@
 package com.marcosaur.questionados_api.model.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ManyToAny;
+import org.springframework.data.jpa.repository.Query;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name="questions")
 public class Question implements Serializable{
     @Id
     @GeneratedValue
@@ -18,6 +21,7 @@ public class Question implements Serializable{
 
     @Column()
     private String description;
+
 
     public Question(){}
 
