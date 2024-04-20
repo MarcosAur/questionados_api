@@ -2,22 +2,33 @@ package com.marcosaur.questionados_api.model.dto.reply;
 
 import com.marcosaur.questionados_api.model.entity.Reply;
 
-public class IndexAndStoreReplyDto {
+public class ReplyDto {
 
+    private Long id;
     private Long question;
     private String text;
     private boolean correct;
 
-    public IndexAndStoreReplyDto(Long question, String text, boolean correct) {
+    public ReplyDto(Long question, String text, boolean correct, Long id) {
+        this.id = id;
         this.question = question;
         this.text = text;
         this.correct = correct;
     }
 
-    public IndexAndStoreReplyDto(Reply reply) {
+    public ReplyDto(Reply reply) {
+        this.id = reply.getId();
         this.question = reply.getQuestion().getId();
         this.text = reply.getText();
         this.correct = reply.getIsCorrect();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getQuestion() {
@@ -36,11 +47,11 @@ public class IndexAndStoreReplyDto {
         this.text = text;
     }
 
-    public boolean getCorrect() {
+    public boolean isCorrect() {
         return correct;
     }
 
     public void setCorrect(boolean correct) {
-        correct = correct;
+        this.correct = correct;
     }
 }

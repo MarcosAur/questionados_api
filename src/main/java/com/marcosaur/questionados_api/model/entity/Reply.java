@@ -2,6 +2,8 @@ package com.marcosaur.questionados_api.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name="replies")
 public class Reply {
@@ -29,6 +31,10 @@ public class Reply {
 
     public Reply() {}
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return this.id;
     }
@@ -55,5 +61,18 @@ public class Reply {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reply reply = (Reply) o;
+        return Objects.equals(id, reply.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
