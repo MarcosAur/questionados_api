@@ -18,16 +18,19 @@ public class RankController {
     private RankService rankService;
 
     @GetMapping(value = "/find-all")
+    @CrossOrigin
     public ResponseEntity<List<RankDto>> findAll() {
         return ResponseEntity.ok().body(rankService.findAll());
     }
 
     @GetMapping(value="/find-top-ten")
+    @CrossOrigin
     public ResponseEntity<List<RankDto>> findTopTen() {
         return ResponseEntity.ok().body(rankService.findTopTen());
     }
 
     @GetMapping(value="/find-position-in-rank/")
+    @CrossOrigin
     public ResponseEntity<Object> findPositionInRank(@RequestParam Long id) {
 
         int position = rankService.getPositionById(id);
@@ -41,7 +44,8 @@ public class RankController {
 
     }
 
-    @PostMapping(value="/store")
+    @PostMapping(value="/save")
+    @CrossOrigin
     public ResponseEntity<Object> store(@RequestBody RankDto rankDto) {
 
         Map<String, Object> returnedData = rankService.store(rankDto);

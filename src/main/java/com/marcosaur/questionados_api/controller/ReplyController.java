@@ -17,11 +17,13 @@ public class ReplyController {
     ReplyService replyService;
 
     @GetMapping(value="/find-by-question/")
+    @CrossOrigin
     public ResponseEntity<List<ReplyDto>> findByQuestionId(@RequestParam Long question){
         return ResponseEntity.ok().body(replyService.findByQuestion(question));
     }
 
     @GetMapping(value="/find-all")
+    @CrossOrigin
     public ResponseEntity<List<ReplyDto>> findAll(){
         return ResponseEntity.ok().body(replyService.findAll());
     }

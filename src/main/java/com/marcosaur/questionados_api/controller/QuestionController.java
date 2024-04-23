@@ -17,13 +17,16 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping(value="/find-all")
+    @CrossOrigin
     public ResponseEntity<List<IndexAndStoreQuestionDto>> findAll(){
-        List<IndexAndStoreQuestionDto> questions = questionService.findAll().stream().map(IndexAndStoreQuestionDto::new).toList();
+        List<IndexAndStoreQuestionDto> questions = questionService.findAll();
 
         return ResponseEntity.ok().body(questions);
     }
 
+
     @GetMapping(value="/find-by-id/")
+    @CrossOrigin
     public ResponseEntity<IndexAndStoreQuestionDto> findById(@RequestParam String id){
         IndexAndStoreQuestionDto question = questionService.findById(id);
         if(question != null){
@@ -59,5 +62,11 @@ public class QuestionController {
 
         return ResponseEntity.unprocessableEntity().body("Registro inexistente");
     };
+
+    @GetMapping(value="/start-game")
+    @CrossOrigin
+    public ResponseEntity<String> startGame(){
+        return null;
+    }
 
 }

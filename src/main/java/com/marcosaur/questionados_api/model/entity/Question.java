@@ -39,6 +39,14 @@ public class Question implements Serializable{
         this.description = description;
     }
 
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

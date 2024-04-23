@@ -1,6 +1,7 @@
 package com.marcosaur.questionados_api.services;
 
 import com.marcosaur.questionados_api.model.dao.QuestionDao;
+import com.marcosaur.questionados_api.model.dao.ReplyDao;
 import com.marcosaur.questionados_api.model.dto.question.IndexAndStoreQuestionDto;
 import com.marcosaur.questionados_api.model.dto.question.UpdateQuestionDto;
 import com.marcosaur.questionados_api.model.entity.Question;
@@ -16,8 +17,20 @@ public class QuestionService {
     @Autowired
     private QuestionDao questionDao;
 
-    public List<Question> findAll(){
-        return questionDao.findAll();
+    @Autowired
+    private ReplyDao replyDao;
+
+    public List<IndexAndStoreQuestionDto> findAll(){
+
+        List<Question> questions = questionDao.findAll();
+
+        for (Question question : questions) {
+            question.setReplies(replyDao.findByQuestion(question));
+        }
+
+        return questions.stream()
+                .map(IndexAndStoreQuestionDto::new)
+                .toList();
     }
 
     public IndexAndStoreQuestionDto findById(String id){
