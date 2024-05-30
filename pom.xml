@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.marcosaur</groupId>
-	<artifactId>questionados_api</artifactId>
+	<artifactId>projeto_final_estacio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>questionados_api</name>
 	<description>Projeto que será utilizado para um jogo de perguntas e respostas</description>

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value="/ranks")
+@RequestMapping(value = "/ranks")
 public class RankController {
 
     @Autowired
@@ -23,13 +23,13 @@ public class RankController {
         return ResponseEntity.ok().body(rankService.findAll());
     }
 
-    @GetMapping(value="/find-top-ten")
+    @GetMapping(value = "/find-top-ten")
     @CrossOrigin
     public ResponseEntity<List<RankDto>> findTopTen() {
         return ResponseEntity.ok().body(rankService.findTopTen());
     }
 
-    @GetMapping(value="/find-position-in-rank/")
+    @GetMapping(value = "/find-position-in-rank/")
     @CrossOrigin
     public ResponseEntity<Object> findPositionInRank(@RequestParam Long id) {
 
@@ -44,13 +44,13 @@ public class RankController {
 
     }
 
-    @PostMapping(value="/save")
+    @PostMapping(value = "/save")
     @CrossOrigin
     public ResponseEntity<Object> store(@RequestBody RankDto rankDto) {
 
         Map<String, Object> returnedData = rankService.store(rankDto);
 
-        if (returnedData.containsKey("savedRank")){
+        if (returnedData.containsKey("savedRank")) {
             return ResponseEntity.ok().body(returnedData.get("savedRank"));
         } else {
             return ResponseEntity.badRequest().body(returnedData.get("message"));

@@ -4,6 +4,7 @@ import com.marcosaur.questionados_api.model.dto.reply.ReplyDto;
 import com.marcosaur.questionados_api.model.entity.Question;
 import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IndexAndStoreQuestionDto {
@@ -19,7 +20,7 @@ public class IndexAndStoreQuestionDto {
         this.name = question.getName();
         this.description = question.getDescription();
         this.id = question.getId();
-        this.replies = question.getReplies().stream().map(ReplyDto::new).toList();
+        this.replies = question.getReplies() != null ? question.getReplies().stream().map(ReplyDto::new).toList() : new ArrayList<>();
     }
 
     public IndexAndStoreQuestionDto(String name, String description){
